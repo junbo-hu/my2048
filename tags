@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-Wall$/;"	m
+LIBS	Makefile	/^LIBS=-lcurses$/;"	m
+NCOLS	2048_game.c	10;"	d	file:
+NROWS	2048_game.c	9;"	d	file:
+OBJ	Makefile	/^OBJ=2048_game.c$/;"	m
+board	2048_game.c	/^	tile_t board[NROWS][NCOLS];$/;"	m	struct:game_t	file:	access:public
+combine_left	2048_game.c	/^int combine_left(struct game_t *game)$/;"	f	signature:(struct game_t *game)
+deflate_left	2048_game.c	/^int deflate_left(tile_t row[NCOLS])$/;"	f	signature:(tile_t row[NCOLS])
+game_t	2048_game.c	/^struct game_t{$/;"	s	file:
+game_t::board	2048_game.c	/^	tile_t board[NROWS][NCOLS];$/;"	m	struct:game_t	file:	access:public
+game_t::max_tile	2048_game.c	/^	int turns,score,max_tile;$/;"	m	struct:game_t	file:	access:public
+game_t::score	2048_game.c	/^	int turns,score,max_tile;$/;"	m	struct:game_t	file:	access:public
+game_t::turns	2048_game.c	/^	int turns,score,max_tile;$/;"	m	struct:game_t	file:	access:public
+init_curses	2048_game.c	/^void init_curses()$/;"	f
+lose_game	2048_game.c	/^int lose_game(struct game_t test_game)$/;"	f	signature:(struct game_t test_game)
+main	2048_game.c	/^int main()$/;"	f
+max	2048_game.c	7;"	d	file:
+max_tile	2048_game.c	/^	int turns,score,max_tile;$/;"	m	struct:game_t	file:	access:public
+move_left	2048_game.c	/^void move_left(struct game_t *game)$/;"	f	signature:(struct game_t *game)
+place_tile	2048_game.c	/^int place_tile(struct game_t *gamme)$/;"	f	signature:(struct game_t *gamme)
+print_game	2048_game.c	/^void print_game(struct game_t *game)$/;"	f	signature:(struct game_t *game)
+print_tile	2048_game.c	/^void print_tile(int tile)$/;"	f	signature:(int tile)
+rotate_clockwise	2048_game.c	/^void rotate_clockwise(struct game_t *game)$/;"	f	signature:(struct game_t *game)
+score	2048_game.c	/^	int turns,score,max_tile;$/;"	m	struct:game_t	file:	access:public
+tile_t	2048_game.c	/^typedef unsigned int tile_t;$/;"	t	file:
+turns	2048_game.c	/^	int turns,score,max_tile;$/;"	m	struct:game_t	file:	access:public
