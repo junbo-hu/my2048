@@ -52,20 +52,53 @@ void print_tile(int tile)
 {
 
 }
-
+//Print the game panel
 void print_game(struct game_t *game)
 {
+	int r, c;
+	move(0, 0);
+	printw("Score: %6d Turns: %4d, game->score, game->turns);
+	for(r = 0;r < NROWS; r++){
+		for(c = 0;c < NCOLS; c++){
+			move(r + 2, 5 * c);
+			print_tile(game->board[r][c]);
+		}
+	}
+	refresh();
 
 }
 
 int combine_left(struct game_t *game)
 {
-	return 1;
+	int c, did_combine = 0;
+	for(c = 1;c < NCOLS; c++)
+		if(row[c] && row[c-1] == row[c]){
+			row[c-1]++;
+			row[c] = 0;
+			game->score += 1 << (row[c-1] - 1);
+			did_combine = 1;
+			game->max_tile = max(game->max_tile, row[c-1]);
+		}
+	return did_combine;
 }
 
 int deflate_left(tile_t row[NCOLS])
 {
-	return 1;
+	tile_t buf[NCOLS] = {0};
+	tile_t *out = buf;
+	int did_compress = 0;
+
+	int in;
+	for(in = 0; in < NCOLS; in++){
+		if(row[in] != 0){
+			*(out++) = row[in];
+			if(buf[in] != row[in])
+				did_compress = 1;
+		}
+	}
+	memcpy(row, buf, sizeof(buf));
+
+	return did_compress;
 
 }
 
@@ -124,10 +157,11 @@ int main()
 {
 	init_curses();
 	const char *exit_msg = "";
-	srandom(time(NULL));
+	srand(time(NULL));
 
 	struct game_t game = {0};
 	int last_turn = game.turns;
+	//place two tiles in the first time
 	place_tile(&game);
 	place_tile(&game);
 	
@@ -141,10 +175,10 @@ int main()
 		last_turn = game.turns;
 		
 		switch(getch()){
-		case 'h':
-		case 'j':
-		case 'k':
-		case 'l':
+		case 'h': move_left(&game);break;
+		case 'j': move_down(&game);break;
+		case 'k': move_up(&game);break;
+		case 'l': move_right(&game);break;
 		case 'q':
 			exit_msg = "quit";
 			goto end;
